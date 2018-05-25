@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="SLShoppingT"
+  name="SLShopping"
   id="myeclipse.1527046407640"
   context-root="/SLShoppingT"
   j2ee-spec="1.7"
-  archive="SLShoppingT.war">
+  archive="SLShopping.war">
   <attributes>
     <attribute name="webrootdir" value="src/main/webapp" />
   </attributes>
