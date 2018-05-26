@@ -3,11 +3,11 @@
   type="WEB"
   name="SLShopping"
   id="myeclipse.1527046407640"
-  context-root="/SLShoppingT"
+  context-root="/SLShopping"
   j2ee-spec="1.7"
   archive="SLShopping.war">
   <attributes>
-    <attribute name="webrootdir" value="src/main/webapp" />
+    <attribute name="webrootdir" value="&lt;prjroot&gt;" />
   </attributes>
 </project-module>
 

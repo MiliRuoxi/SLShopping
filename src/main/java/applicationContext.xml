@@ -45,25 +45,25 @@
         <!-- 每60秒检查所有连接池中的空闲连接.Default:0 -->  
         <property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}"/>  
     </bean>  
-     
+     <!-- 定义事务管理TransactionManager -->
+     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       <property name="dataSource" ref="dataSource"></property>
+     </bean>
      <!-- 配置SqlSessionFactoryBean -->
      <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
             
             <!-- 引用数据源文件 -->
-            <property name="dataSource" ref="datasource"></property>
+            <property name="dataSource" ref="dataSource"></property>
             
             <!-- 引用Mybatis配置文件中的配置 -->
             <property name="configLocation" value="classpath:mybatis-config.xml"></property>           
      </bean>
      
-     <!-- 定义事务管理TransactionManager -->
-     <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-       <property name="dataSource" ref="datasource"></property>
-     </bean>
+     
      
      <!-- 通过<tx:advice>标签为指定的事务管理器设置事物属性 -->
          <!-- 定义属性，声明事物规则 -->
-        <tx:advice id="txadvice" transaction-manager="t">
+        <tx:advice id="txadvice" transaction-manager="transactionManager">
              <tx:attributes>
                  <tx:method name="find" read-only="true" propagation="SUPPORTS"/><!-- 存在，执行事务；不存在,按非事务执行 -->
                  <tx:method name="get" read-only="true" propagation="SUPPORTS"/>
@@ -78,8 +78,5 @@
            
            <!-- 定义切点 -->
            <aop:pointcut expression="'execution(* com.jbit.service.*.*(..))'" id="mycut"/>
-           
-           <!-- 将事务增强与切点组合 -->
-           <aop:advisor advice-ref="txAdvic" pointcut-ref="mycut"/>
         </aop:config>
 </beans>
