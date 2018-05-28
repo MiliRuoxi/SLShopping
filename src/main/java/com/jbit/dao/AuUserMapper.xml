@@ -45,4 +45,16 @@
     from au_user
     where id = #{id,jdbcType=BIGINT}
   </select>
+  
+  <select id="login" resultType="AuUser">
+    select * from au_user 
+      <where>
+           <if test="logincode!=null and logincode=''">
+              logincode=#{loginCode}
+           </if>
+           <if test="password!=null and password=''">
+              password=#{password}
+           </if>
+      </where>
+  </select>
 </mapper>

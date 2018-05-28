@@ -16,10 +16,10 @@ $("#loginBtn").click(function(){
 		$("#formtip").html("");
 		
 		$.ajax({
-			url: '/login.html',
+			url: '/login',
 			type: 'POST',
 			data:{user:JSON.stringify(user)},
-			dataType: 'html',
+			dataType: 'json',
 			timeout: 1000,
 			error: function(){
 				$("#formtip").css("color","red");
